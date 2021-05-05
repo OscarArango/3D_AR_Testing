@@ -1,0 +1,123 @@
+.hotspot {
+  font-family: var(--font-sans-serif);
+
+  background-image: url("data:image/svg+xml,<svg fill='%23fff' version='1.2' baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M18 10h-4v-4c0-1.104-.896-2-2-2s-2 .896-2 2l.071 4h-4.071c-1.104 0-2 .896-2 2s.896 2 2 2l4.071-.071-.071 4.071c0 1.104.896 2 2 2s2-.896 2-2v-4.071l4 .071c1.104 0 2-.896 2-2s-.896-2-2-2z' /></svg>");
+  background-repeat: no-repeat;
+  background-size: var(--hotspot-icon-size);
+  background-position: 50% 50%;
+
+  width: var(--hotspot-button-size);
+  height: var(--hotspot-button-size);
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 8px;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+.hotspot.selected {
+  font-family: var(--font-sans-serif);
+
+  background-image: url("data:image/svg+xml,<svg fill='%23fff' version='1.2' baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M17.414 6.586c-.78-.781-2.048-.781-2.828 0l-2.586 2.586-2.586-2.586c-.78-.781-2.048-.781-2.828 0-.781.781-.781 2.047 0 2.828l2.585 2.586-2.585 2.586c-.781.781-.781 2.047 0 2.828.39.391.902.586 1.414.586s1.024-.195 1.414-.586l2.586-2.586 2.586 2.586c.39.391.902.586 1.414.586s1.024-.195 1.414-.586c.781-.781.781-2.047 0-2.828l-2.585-2.586 2.585-2.586c.781-.781.781-2.047 0-2.828z' /></svg>");
+  background-repeat: no-repeat;
+  background-size: var(--hotspot-icon-size);
+  background-position: 50% 50%;
+
+  /*background-color: red; */
+}
+
+.hotspot:not(.selected)>.annotation,
+.hotspot:not(.selected)>.hotspot-annotation {
+  display: none;
+}
+
+.hotspot:not([data-visible]) {
+  background: transparent;
+  border: 3px solid #fff;
+  box-shadow: none;
+  pointer-events: none;
+  height: var(--hotspot-button-size);
+  width: var(--hotspot-button-size);
+}
+
+.hotspot:focus {
+  /*border: 4px solid rgb(0, 128, 200);*/
+  outline: none;
+  height: var(--hotspot-button-size);
+  width: var(--hotspot-button-size);
+}
+
+.hotspot > * {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.annotation {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  transform: translate(10px, 10px);
+  padding: 10px;
+  text-align: left;
+}
+
+.hotspot-annotation {
+  color: #fff;
+  text-shadow: 0 2px 5.82px rgba(40,38,38,.73);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  
+  display: block;
+  font-family: var(--font-sans-serif);
+  font-size: 20px;
+  font-weight: 700;
+
+  left: calc(100% + 0.5em);
+  max-width: 180px;
+  padding: 0.5em 0.65em;
+  position: absolute;
+  top: 50%;
+  width: max-content;
+}
+
+.hotspot:not([data-visible]) > * {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-50% + 4px));
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* This keeps child nodes hidden while the element loads */
+:not(:defined) > * {
+  display: none;
+}
+
+/* 
+button {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: blue;
+  box-sizing: border-box;
+}
+
+button[slot="hotspot-0"] {
+  --min-hotspot-opacity: 0;
+  background-color: red;
+}
+
+button[slot="hotspot-2"] {
+  background-color: transparent;
+  border: 3px solid blue;
+}
+*/

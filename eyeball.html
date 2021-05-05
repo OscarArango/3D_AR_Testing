@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css?v1.0" >
+  <link rel="stylesheet" href="css/hotspot.css?v1.0">
+  <style>
+    #poster-image, 
+    #lazy-load-poster {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: var(--poster-color);
+      background-image: url(posters/poster-eyeball.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.4/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/intersection-observer@0.11.0/intersection-observer.js"></script>
+  <script src="https://unpkg.com/resize-observer-polyfill@1.5.1/dist/ResizeObserver.js"></script>
+  <script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js" defer></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer@1.1.0/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer@1.1.0/dist/model-viewer-legacy.js"></script>
+  <script src="js/scripts.js?v=1.5"></script>
+</head>
+
+<body>
+  <div class="content">
+    <div class="wrapper">
+      <div class="demo">
+        <model-viewer id="model-viewer" 
+          src="models/Eyeball.gltf" 
+          ios-src="models/Eyeball-reality-v6.usdz#canonicalWebPageURL=https://crosstrainerlearning.com/" 
+          poster="posters/poster-eyeball.png" 
+          alt="Eyeball" 
+          interaction-prompt="auto" 
+          camera-controls  
+          ar ar-modes="scene-viewer quick-look" ar-scale="auto" 
+          quick-look-browsers="safari chrome" 
+          loading="eager" reveal="auto">
+          
+          <div id="poster-image" class="hide"></div>
+          <div id="load-button"  class="hide">Load 3D Model</div>
+          <button id="ar-button" class="hide" slot="ar-button" style="z-index: 10000;">Activate AR</button>
+
+          <button class="hotspot" slot="hotspot-0"
+            data-position="0.11388022710468636m 1.3046796028104128m 0.8921467147641413m"
+            data-normal="0.3337761475198104m -0.032869194259704825m 0.9420791364930824m"
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Cornea</div>
+          </button>
+          <button class="hotspot" slot="hotspot-1"
+            data-position="0.5513257478696829m 1.3240400762394904m 0.39400520237865866m"
+            data-normal="0.9027996021808756m -0.42893910281845554m 0.03105035225808394m"
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Lateral Rectus</div>
+          </button>
+          <button class="hotspot" slot="hotspot-2"
+            data-position="-0.5468899096234148m 1.3150497508755994m 0.4513202310689104m"
+            data-normal="-0.932429405554569m 0.32377606658555m 0.1604508097939765m" 
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Medial Rectus</div>
+          </button>
+          <button class="hotspot" slot="hotspot-3"
+            data-position="-0.008899478645808645m 1.883070082915003m 0.355139933637624m"
+            data-normal="0.4205192419093289m 0.9037251811067641m -0.08027679750432218m"
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Superior Rectus</div>
+          </button>
+          <button class="hotspot" slot="hotspot-4"
+            data-position="-0.26879400326295017m 1.9646363458012277m 0.48372388002132216m"
+            data-normal="0.7092731702321591m 0.699144549860437m -0.09015801899592463m"
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Superior Oblique</div>
+          </button>
+
+        </model-viewer>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".hotspot").forEach(hotspot => 
+      hotspot.addEventListener("click", () => hotspot.classList.toggle("selected"))
+    );
+  </script>
+</body>
+</html>

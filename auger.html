@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="css/hotspot.css?v=1.0">
+  <style>
+    #poster-image, 
+    #lazy-load-poster {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: var(--poster-color);
+      background-image: url(posters/poster-auger.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.4/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/intersection-observer@0.11.0/intersection-observer.js"></script>
+  <script src="https://unpkg.com/resize-observer-polyfill@1.5.1/dist/ResizeObserver.js"></script>
+  <script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js" defer></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer@1.1.0/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer@1.1.0/dist/model-viewer-legacy.js"></script>
+  <script src="js/scripts.js?v=1.5"></script>
+</head>
+
+<body>
+  <div class="content">
+    <div class="wrapper">
+      <div class="demo">
+        <model-viewer id="model-viewer" 
+          src="models/augger.gltf" 
+          ios-src="models/auggermented-reality-v3.usdz#canonicalWebPageURL=https://crosstrainerlearning.com/" 
+          poster="posters/poster-auger.png" 
+          alt="Auger" 
+          interaction-prompt="auto" 
+          shadow-intensity="1" shadow-softness="1" 
+          camera-controls  
+          ar ar-modes="scene-viewer quick-look" ar-scale="auto" 
+          quick-look-browsers="safari chrome" 
+          loading="eager" reveal="auto">
+          
+          <div id="poster-image" class="hide"></div>
+          <div id="load-button"  class="hide">Load 3D Model</div>
+          <button id="ar-button" class="hide" slot="ar-button" style="z-index: 10000;">Activate AR</button>
+
+          <button class="hotspot" slot="hotspot-1"
+            data-position="-0.009469590187072783m 0.09223708537272761m -0.006817894195012475m" data-normal="-1m 0m 0m"
+            data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Gas tank</div>
+          </button>
+          <button class="hotspot" slot="hotspot-2"
+            data-position="-0.024033394099778217m 0.07865655123453015m 0.008656963431136533m"
+            data-normal="0m -0.5552311346666788m -0.8316960905864306m" data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Trigger</div>
+          </button>
+          <button class="hotspot" slot="hotspot-3"
+            data-position="0.024114373040340798m 0.08379349765778589m 0.013909239453455045m"
+            data-normal="0m -0.9999999999999999m 0m" data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Handles</div>
+          </button>
+          <button class="hotspot" slot="hotspot-4"
+            data-position="0.000011675734006445726m 0.043480995970321595m 0.008356138734054532m"
+            data-normal="-0.3201663679551228m -0.006098407324904803m 0.9473417051193959m" data-visibility-attribute="visible">
+            <div class="hotspot-annotation">Drill bit</div>
+          </button>
+
+        </model-viewer>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".hotspot").forEach(hotspot => 
+      hotspot.addEventListener("click", () => hotspot.classList.toggle("selected"))
+    );
+  </script>
+</body>
+</html>
